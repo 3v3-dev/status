@@ -89,11 +89,26 @@
     dl.classList.add("v3-done");
   }
 
+  // "✅ All systems are operational": the tick becomes a green LED, Upptime's words stay.
+  function paintAllUp() {
+    document.querySelectorAll("main > article.up:not(.link)").forEach((a) => {
+      if (a.querySelector(".v3-led")) return;
+      const t = a.firstChild;
+      if (!t || t.nodeType !== 3 || !/^\s*\u2705/.test(t.textContent)) return;
+      t.textContent = t.textContent.replace(/^\s*\u2705[\s\u00a0]*/, "");
+      const led = el("span", "v3-led green");
+      led.title = "up";
+      a.prepend(led);
+      a.classList.add("v3-all");
+    });
+  }
+
   let queued = false;
   function paint() {
     queued = false;
     document.querySelectorAll("section.live-status > article").forEach(paintCard);
     document.querySelectorAll("main dl").forEach(paintMeters);
+    paintAllUp();
   }
   const later = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
   new MutationObserver(later).observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ["class"] });

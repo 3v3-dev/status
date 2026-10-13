@@ -18,7 +18,7 @@ main.container,nav .container{max-width:880px}
 html body nav{background:linear-gradient(180deg,rgba(216,178,94,.06),transparent);border-bottom:1px solid var(--line);font-weight:400}
 nav .container{display:flex;align-items:center;gap:20px}
 nav .container a.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--silk)}
-nav .container a.logo img{height:26px;width:auto;display:block}
+nav .container a.logo img{height:26px !important;width:auto;display:block;margin-right:0 !important} /* over Svelte's own .logo img (3rem) */
 nav .container a.logo div{font:500 11px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--silk-3)}
 nav .container ul{margin-left:auto}
 nav .container ul li a[href]{font:500 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--silk-2);text-decoration:none}
@@ -29,6 +29,8 @@ nav .container ul li a[aria-current]{color:var(--gold);border-bottom-color:var(-
 main.container header h1{font-size:clamp(30px,5vw,46px);line-height:1.08;margin-top:8px}
 main.container header h1 strong{color:var(--gold);font-weight:600}
 main.container header p.lead{color:var(--silk-2);font-size:17px;max-width:56ch}
+main.container h1 a{color:var(--silk);text-decoration:none}
+main.container > article.up:not(.link),main.container > article.v3-all{display:flex;align-items:center}
 
 /* a card, Giagia's: a dark face, a hairline, a state edge on the left, two corner ticks */
 html body article{
@@ -62,7 +64,7 @@ main.container form.r input:checked + label{color:var(--gold);border-color:rgba(
 /* the live cards: Giagia's card with a big faded figure (the uptime) and two LED bars (status.js). The response
    graph Upptime paints behind the card is left out here: the bars and the history page carry it. */
 section.live-status article.graph{background-image:linear-gradient(180deg,var(--card),var(--panel)) !important;
-  container-type:inline-size;min-height:118px;padding:14px 18px 14px}
+  container-type:inline-size;padding:14px 18px 16px}
 section.live-status article.graph h4{display:flex;align-items:center;font:600 18px var(--display);letter-spacing:.02em;margin:0 0 10px;position:relative;z-index:1}
 section.live-status article.graph h4 img.icon{display:none}
 section.live-status article.graph h4 a{color:var(--silk);text-decoration:none}
@@ -70,6 +72,8 @@ section.live-status article.graph .v3-plain{position:absolute;width:1px;height:1
 .v3-wm{position:absolute;right:18px;top:8px;pointer-events:none;font:600 min(64px,13cqw)/1 var(--mono);letter-spacing:-.04em;color:var(--silk);opacity:.17}
 .v3-wm small{font-size:.5em;margin-left:.08em}
 .v3-bars{display:flex;flex-direction:column;gap:6px;max-width:560px;position:relative;z-index:1}
+/* the bars end before the big figure starts, so the two never cross */
+@container (min-width:520px){.v3-bars{max-width:min(560px,calc(100% - 42cqw))}}
 .v3-bar{display:grid;grid-template-columns:92px 1fr 96px;align-items:center;gap:12px;font-size:12px}
 .v3-bar .bl{font:500 10.5px var(--mono);letter-spacing:.18em;color:var(--silk-3);text-transform:uppercase;white-space:nowrap}
 .v3-bar .bt{display:grid;grid-template-columns:repeat(20,1fr);gap:3px;height:9px}
@@ -100,9 +104,12 @@ html body footer a{color:var(--gold)}
 
 @media (max-width:560px){
   main.container,nav .container{padding-left:16px;padding-right:16px}
-  nav .container{gap:12px}
+  nav{padding-left:0;padding-right:0}
+  nav .container{gap:10px}
+  nav .container a.logo img{height:20px !important}
+  nav .container a.logo{margin-right:0}
   nav .container a.logo div{display:none}
-  nav .container ul li a[href]{letter-spacing:.12em}
+  nav .container ul li a[href]{letter-spacing:.1em;font-size:11px;padding-left:10px;padding-right:10px}
   .v3-bar{grid-template-columns:76px 1fr 78px;gap:8px}
   .v3-meters{grid-template-columns:minmax(0,1fr)}
   main.container form.r label{margin-left:2px;padding:4px 6px}
