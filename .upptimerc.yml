@@ -7,7 +7,7 @@ sites:
   - name: Website
     url: https://3v3.dev
   - name: MCP
-    url: https://mcp.3v3.dev
+    url: https://mcp.3v3.dev/.well-known/oauth-protected-resource
 
 workflowSchedule:
   uptime: "*/5 * * * *"
