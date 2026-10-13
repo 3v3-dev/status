@@ -1,0 +1,49 @@
+/* status.3v3.dev in 3v3.dev's colours and fonts (#2182, the founder, chat 57, 13 Oct 2026).
+   Loaded as Upptime's themeUrl, in place of its light/dark themes: Upptime's own variables, set to the site's
+   palette (3v3dev site/site.css), and the site's fonts, served from this site (no font host). The look is in
+   status.css; the LED bars and the big figures are drawn by status.js. */
+@font-face{font-family:"Chakra Petch";font-weight:600;font-display:swap;src:url(/3v3/fonts/chakra-petch-latin-600.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:100 700;font-display:swap;src:url(/3v3/fonts/ibm-plex-sans-latin-var.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;font-display:swap;src:url(/3v3/fonts/ibm-plex-mono-latin-400.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:500;font-display:swap;src:url(/3v3/fonts/ibm-plex-mono-latin-500.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:600;font-display:swap;src:url(/3v3/fonts/ibm-plex-mono-latin-600.woff2) format("woff2")}
+
+:root{
+  /* 3v3.dev */
+  --gold:#D8B25E; --tint:#DFE8E1; --carbon:#0D0D0C; --carbon-2:#151513; --silk:#F4F3EE;
+  --silk-2:rgba(244,243,238,.76); --silk-3:rgba(244,243,238,.52);
+  --line:rgba(223,232,225,.13); --line-2:rgba(223,232,225,.26);
+  --display:"Chakra Petch",system-ui,sans-serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  /* Giagia's state colours and card faces */
+  --green:#3DDC84; --orange:#F0A030; --red:#FF4D5A; --grey:#55606E;
+  --card:#131311; --panel:#0F0F0D;
+
+  /* Upptime's own variables */
+  --body-background-color:var(--carbon);
+  --body-text-color:var(--silk);
+  --card-background-color:var(--card);
+  --nav-background-color:var(--carbon);
+  --nav-border-bottom-color:var(--line);
+  --nav-current-border-bottom-color:var(--gold);
+  --card-border-color:var(--line);
+  --down-border-left-color:var(--red);
+  --down-background-color:rgba(255,77,90,.12);
+  --degraded-border-left-color:var(--orange);
+  --up-border-left-color:var(--green);
+  --tag-color:var(--carbon);
+  --tag-up-background-color:var(--green);
+  --tag-down-background-color:var(--red);
+  --tag-degraded-background-color:var(--orange);
+  --change-background-color:rgba(216,178,94,.28);
+  --error-button-border-color:var(--gold);
+  --error-button-background-color:transparent;
+  --error-button-color:var(--gold);
+  --submit-button-border-color:var(--gold);
+  --submit-button-background-color:var(--gold);
+  --submit-button-color:var(--carbon);
+  --code-color:var(--silk);
+  --code-background-color:rgba(255,255,255,.06);
+  --graph-opacity:1;
+  --graph-filter:none;
+  color-scheme:dark;
+}

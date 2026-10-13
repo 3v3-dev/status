@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -25 550 150" role="img" aria-label="3v3.dev">
+  <title>3v3.dev</title>
+  <defs><mask id="drill-s"><rect x="-40" y="-25" width="550" height="150" fill="#fff"/><circle cx="0" cy="0" r="4.55" fill="#000"/></mask></defs>
+  <g mask="url(#drill-s)">
+    <circle cx="0" cy="0" r="15" fill="#F4F3EE"/>
+    <g fill="none" stroke="#F4F3EE" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M10,0 H45 L60,15 V35 L45,50 H15 M45,50 L60,65 V85 L45,100 H0"/>
+      <path d="M0,40 V70 L30,100 L60,70 V40" transform="translate(80,0)"/>
+      <path d="M0,0 H45 L60,15 V35 L45,50 H15 M45,50 L60,65 V85 L45,100 H0" transform="translate(160,0)"/>
+      <path d="M60,0 V100 H15 L0,85 V55 L15,40 H60" transform="translate(272,0)"/>
+      <path d="M0,70 H60 V55 L45,40 H15 L0,55 V85 L15,100 H55" transform="translate(352,0)"/>
+      <path d="M0,40 V70 L30,100 L60,70 V40" transform="translate(432,0)"/>
+    </g>
+    <path d="M243,93 H249 L252,96 V102 L249,105 H243 L240,102 V96 Z" fill="#F4F3EE"/>
+  </g>
+</svg>
