@@ -26,16 +26,18 @@ status-website:
   introMessage: Checked every 5 minutes from GitHub. Incidents open here on their own when a check fails.
   # The look of 3v3.dev and Giagia (#2182, founder #57): all of it in assets/3v3/, served from this site (no font
   # host, no icon service). tokens.css replaces Upptime's light/dark theme, status.css loads after its global.css,
-  # status.js draws the LED bars and the big figures from the numbers Upptime puts on the page.
-  logoUrl: /3v3/wordmark-silkscreen.svg
-  favicon: /3v3/icon-180.png
-  faviconSvg: /3v3/icon-32-dark.svg
-  themeUrl: /3v3/tokens.css
+  # status.js draws the LED bars and the big figures from the numbers Upptime puts on the page. Full addresses on
+  # purpose: the build's crawler (sapper export) follows every same-site link and writes a 404 page as a FOLDER at
+  # /3v3/status.css etc., and then copying assets/ over it fails; a full address it leaves alone. Same site still.
+  logoUrl: https://status.3v3.dev/3v3/wordmark-silkscreen.svg
+  favicon: https://status.3v3.dev/3v3/icon-180.png
+  faviconSvg: https://status.3v3.dev/3v3/icon-32-dark.svg
+  themeUrl: https://status.3v3.dev/3v3/tokens.css
   links:
     - rel: stylesheet
-      href: /3v3/status.css
+      href: https://status.3v3.dev/3v3/status.css
   scripts:
-    - src: /3v3/status.js
+    - src: https://status.3v3.dev/3v3/status.js
       async: true
   metaTags:
     - name: theme-color
