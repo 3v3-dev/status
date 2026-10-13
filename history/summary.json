@@ -41,18 +41,16 @@
     "icon": "https://icons.duckduckgo.com/ip3/mcp.3v3.dev.ico",
     "slug": "mcp",
     "status": "up",
-    "uptime": "19.22%",
-    "uptimeDay": "19.22%",
-    "uptimeWeek": "19.22%",
-    "uptimeMonth": "19.22%",
-    "uptimeYear": "19.22%",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
     "time": 572,
     "timeDay": 572,
     "timeWeek": 572,
     "timeMonth": 572,
     "timeYear": 572,
-    "dailyMinutesDown": {
-      "2026-10-13": 3
-    }
+    "dailyMinutesDown": {}
   }
 ]
