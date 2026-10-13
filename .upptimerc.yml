@@ -29,6 +29,11 @@ status-website:
   # status.js draws the LED bars and the big figures from the numbers Upptime puts on the page. Full addresses on
   # purpose: the build's crawler (sapper export) follows every same-site link and writes a 404 page as a FOLDER at
   # /3v3/status.css etc., and then copying assets/ over it fails; a full address it leaves alone. Same site still.
+  # GitHub, read by our own server (#2183): the page's API and raw-file reads go to https://3v3.dev/status-api/,
+  # where a one-minute cache answers them with our read-only token (deploy/v3-status-cache in the 3v3dev repo).
+  # So no visitor meets GitHub's 60-an-hour limit, and GitHub never sees a visitor. Upptime's own two settings.
+  apiBaseUrl: https://3v3.dev/status-api/gh
+  userContentBaseUrl: https://3v3.dev/status-api/raw
   logoUrl: https://status.3v3.dev/3v3/wordmark-silkscreen.svg
   favicon: https://status.3v3.dev/3v3/icon-180.png
   faviconSvg: https://status.3v3.dev/3v3/icon-32-dark.svg

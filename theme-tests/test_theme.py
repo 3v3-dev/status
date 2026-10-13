@@ -15,7 +15,8 @@ so the states are the test's and nothing reaches the network. WHAT IT CHECKS, ea
   - numbers the script cannot read: no bars, Upptime's text left visible;
   - a service's page: two meters with Upptime's figures;
   - at 375 px nothing scrolls sideways and the nav's links are all on screen;
-  - the page asks no host but status.3v3.dev and GitHub (no font or icon service).
+  - the page asks no host but status.3v3.dev and 3v3.dev: GitHub's API and raw files are read through our own
+    cache (#2183, status-website apiBaseUrl / userContentBaseUrl), so no visitor talks to GitHub at all.
 """
 import json
 import mimetypes
@@ -29,6 +30,9 @@ from playwright.sync_api import sync_playwright
 EXP = os.path.abspath(sys.argv[1])
 ROOT = os.path.abspath(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(__file__), ".."))
 SITE = "https://status.3v3.dev"
+_cfg = open(os.path.join(ROOT, ".upptimerc.yml")).read()
+API_BASE = re.search(r"\n  apiBaseUrl: (\S+)", _cfg).group(1)            # https://3v3.dev/status-api/gh (#2183)
+RAW_BASE = re.search(r"\n  userContentBaseUrl: (\S+)", _cfg).group(1)    # https://3v3.dev/status-api/raw
 results = []
 
 
@@ -92,9 +96,10 @@ with sync_playwright() as p:
         hosts, errors = set(), []
         ctx.on("request", lambda rq: hosts.add(rq.url.split("/")[2]))
         ctx.route(SITE + "/**", serve_site)
-        ctx.route("https://raw.githubusercontent.com/**", lambda rt: rt.fulfill(status=200, headers={"Access-Control-Allow-Origin": "*", "Content-Type": "application/json"},
-                  body=json.dumps(summary(states))) if rt.request.url.endswith("/history/summary.json") else rt.fulfill(status=404, body="", headers={"Access-Control-Allow-Origin": "*"}))
-        ctx.route("https://api.github.com/**", lambda rt: rt.fulfill(status=200, headers={"Access-Control-Allow-Origin": "*", "Content-Type": "application/json"}, body="[]"))
+        # GitHub, as our cache answers for it (CORS for this site only), at the addresses the config gives
+        ctx.route(RAW_BASE + "/**", lambda rt: rt.fulfill(status=200, headers={"Access-Control-Allow-Origin": SITE, "Content-Type": "application/json"},
+                  body=json.dumps(summary(states))) if rt.request.url.endswith("/history/summary.json") else rt.fulfill(status=404, body="", headers={"Access-Control-Allow-Origin": SITE}))
+        ctx.route(API_BASE + "/**", lambda rt: rt.fulfill(status=200, headers={"Access-Control-Allow-Origin": SITE, "Content-Type": "application/json"}, body="[]"))
         pg = ctx.new_page()
         pg.on("pageerror", lambda e: errors.append(str(e)))
         pg.goto(SITE + path, wait_until="networkidle")
@@ -125,8 +130,8 @@ with sync_playwright() as p:
     check("the nav carries the 3v3.dev wordmark", look["logo"] == SITE + "/3v3/wordmark-silkscreen.svg", str(look["logo"]))
     check("'All systems are operational' has a green LED for its tick", look["allUp"] == "v3-led green" and not look["tick"], str(look))
     check("no script error", not errors, str(errors[:3]))
-    check("the page asks no host but status.3v3.dev and GitHub (no font or icon service)",
-          hosts <= {"status.3v3.dev", "raw.githubusercontent.com", "api.github.com"}, str(sorted(hosts)))
+    check("the page asks no host but status.3v3.dev and 3v3.dev: no GitHub, no font or icon service",
+          hosts <= {"status.3v3.dev", "3v3.dev"} and "3v3.dev" in hosts, str(sorted(hosts)))
     pg.click("label[for=data_day]")
     pg.wait_for_timeout(600)
     check("a period switch redraws from Upptime's new numbers (the same here) without doubling anything",
