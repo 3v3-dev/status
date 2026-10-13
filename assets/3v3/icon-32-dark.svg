@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-55 -30 150 150" role="img" aria-label="3v3.dev">
+  <title>3v3.dev</title>
+  <rect x="-55" y="-30" width="150" height="150" rx="33" fill="#0D0D0C"/>
+  <circle cx="0" cy="0" r="22.5" fill="#F4F3EE"/>
+  <circle cx="0" cy="0" r="6.82" fill="#0D0D0C"/>
+  <path d="M15,0 H45 L60,15 V35 L45,50 H15 M45,50 L60,65 V85 L45,100 H0" fill="none" stroke="#F4F3EE" stroke-width="15" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

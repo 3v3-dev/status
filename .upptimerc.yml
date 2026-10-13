@@ -4,10 +4,17 @@ repo: status
 sites:
   - name: App
     url: https://app.3v3.dev/api/health
+    icon: https://status.3v3.dev/3v3/icon-32-dark.svg
   - name: Website
     url: https://3v3.dev
+    icon: https://status.3v3.dev/3v3/icon-32-dark.svg
   - name: MCP
     url: https://mcp.3v3.dev/.well-known/oauth-protected-resource
+    icon: https://status.3v3.dev/3v3/icon-32-dark.svg
+
+# The response graph on a service's page, in Giagia's green (#2182).
+graphBackgroundColor: "rgba(61, 220, 132, 0.14)"
+graphBorderColor: "#3DDC84"
 
 workflowSchedule:
   uptime: "*/5 * * * *"
@@ -17,6 +24,22 @@ status-website:
   name: 3V3 status
   introTitle: "**3V3** service status"
   introMessage: Checked every 5 minutes from GitHub. Incidents open here on their own when a check fails.
+  # The look of 3v3.dev and Giagia (#2182, founder #57): all of it in assets/3v3/, served from this site (no font
+  # host, no icon service). tokens.css replaces Upptime's light/dark theme, status.css loads after its global.css,
+  # status.js draws the LED bars and the big figures from the numbers Upptime puts on the page.
+  logoUrl: /3v3/wordmark-silkscreen.svg
+  favicon: /3v3/icon-180.png
+  faviconSvg: /3v3/icon-32-dark.svg
+  themeUrl: /3v3/tokens.css
+  links:
+    - rel: stylesheet
+      href: /3v3/status.css
+  scripts:
+    - src: /3v3/status.js
+      async: true
+  metaTags:
+    - name: theme-color
+      content: "#0D0D0C"
   navbar:
     - title: Status
       href: /

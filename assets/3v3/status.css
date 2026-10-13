@@ -1,0 +1,109 @@
+/* status.3v3.dev's look (#2182): 3v3.dev's carbon, silk and gold with its fonts, and Giagia's dashboard elements:
+   dark cards with corner ticks and a state edge, LED dots, 20-segment LED bars and big faded figures. Loaded after
+   Upptime's global.css (status-website.links), so it wins at equal weight; the few !important ones beat a style
+   Upptime sets inline. Every number on the page is still Upptime's. */
+
+html body{
+  font:400 16px/1.55 var(--sans); -webkit-font-smoothing:antialiased;
+  background-color:var(--carbon);
+  background-image:linear-gradient(rgba(216,178,94,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(216,178,94,.035) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+html body a{color:var(--gold);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:.005em}
+main.container,nav .container{max-width:880px}
+
+/* the top bar: the wordmark, then the links in Giagia's header type */
+html body nav{background:linear-gradient(180deg,rgba(216,178,94,.06),transparent);border-bottom:1px solid var(--line);font-weight:400}
+nav .container{display:flex;align-items:center;gap:20px}
+nav .container a.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--silk)}
+nav .container a.logo img{height:26px;width:auto;display:block}
+nav .container a.logo div{font:500 11px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--silk-3)}
+nav .container ul{margin-left:auto}
+nav .container ul li a[href]{font:500 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--silk-2);text-decoration:none}
+nav .container ul li a[href]:hover{color:var(--silk)}
+nav .container ul li a[aria-current]{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* the heading and its line */
+main.container header h1{font-size:clamp(30px,5vw,46px);line-height:1.08;margin-top:8px}
+main.container header h1 strong{color:var(--gold);font-weight:600}
+main.container header p.lead{color:var(--silk-2);font-size:17px;max-width:56ch}
+
+/* a card, Giagia's: a dark face, a hairline, a state edge on the left, two corner ticks */
+html body article{
+  position:relative;background:linear-gradient(180deg,var(--card),var(--panel));
+  border:1px solid var(--line);border-left:2px solid var(--line-2);border-radius:3px;color:var(--silk);
+}
+html body article::before,html body article::after{content:"";position:absolute;width:10px;height:10px;border-color:rgba(216,178,94,.55);border-style:solid;pointer-events:none}
+html body article::before{top:-1px;right:-1px;border-width:1px 1px 0 0}
+html body article::after{bottom:-1px;left:-2px;border-width:0 0 1px 1px}
+html body article.up{border-left-color:rgba(61,220,132,.6) !important}
+html body article.degraded{border-left-color:var(--orange) !important}
+html body article.down{border-left-color:var(--red) !important}
+html body article.down-active{background:linear-gradient(180deg,rgba(255,77,90,.14),rgba(255,77,90,.05))}
+article + article{margin-top:10px}
+
+/* a LED, Giagia's: green, orange or red with its glow */
+.v3-led{display:inline-block;flex:none;width:9px;height:9px;border-radius:50%;background:var(--grey);vertical-align:1px;margin-right:10px}
+.v3-led.green{background:var(--green);box-shadow:0 0 6px rgba(61,220,132,.75)}
+.v3-led.orange{background:var(--orange);box-shadow:0 0 6px rgba(240,160,48,.8)}
+.v3-led.red{background:var(--red);box-shadow:0 0 8px rgba(255,77,90,.9);animation:v3-blink 1s steps(2) infinite}
+@keyframes v3-blink{50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.v3-led.red{animation:none}}
+
+/* section titles and the period switch, in mono */
+main.container h2{font-size:22px;margin-top:6px}
+main.container h3{font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:1}
+main.container form.r label{font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--silk-3);cursor:pointer;
+  padding:4px 8px;border:1px solid transparent;border-radius:3px;margin-left:6px}
+main.container form.r input:checked + label{color:var(--gold);border-color:rgba(216,178,94,.45);font-weight:500}
+
+/* the live cards: Giagia's card with a big faded figure (the uptime) and two LED bars (status.js). The response
+   graph Upptime paints behind the card is left out here: the bars and the history page carry it. */
+section.live-status article.graph{background-image:linear-gradient(180deg,var(--card),var(--panel)) !important;
+  container-type:inline-size;min-height:118px;padding:14px 18px 14px}
+section.live-status article.graph h4{display:flex;align-items:center;font:600 18px var(--display);letter-spacing:.02em;margin:0 0 10px;position:relative;z-index:1}
+section.live-status article.graph h4 img.icon{display:none}
+section.live-status article.graph h4 a{color:var(--silk);text-decoration:none}
+section.live-status article.graph .v3-plain{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.v3-wm{position:absolute;right:18px;top:8px;pointer-events:none;font:600 min(64px,13cqw)/1 var(--mono);letter-spacing:-.04em;color:var(--silk);opacity:.17}
+.v3-wm small{font-size:.5em;margin-left:.08em}
+.v3-bars{display:flex;flex-direction:column;gap:6px;max-width:560px;position:relative;z-index:1}
+.v3-bar{display:grid;grid-template-columns:92px 1fr 96px;align-items:center;gap:12px;font-size:12px}
+.v3-bar .bl{font:500 10.5px var(--mono);letter-spacing:.18em;color:var(--silk-3);text-transform:uppercase;white-space:nowrap}
+.v3-bar .bt{display:grid;grid-template-columns:repeat(20,1fr);gap:3px;height:9px}
+.v3-bar .bt i{background:rgba(255,255,255,.06);border-radius:1px}
+.v3-bar.green .bt i.on{background:var(--green);box-shadow:0 0 4px rgba(61,220,132,.35)}
+.v3-bar.orange .bt i.on{background:var(--orange);box-shadow:0 0 4px rgba(240,160,48,.4)}
+.v3-bar.red .bt i.on{background:var(--red);box-shadow:0 0 4px rgba(255,77,90,.45)}
+.v3-bar .bv{font:600 13px var(--mono);text-align:right;white-space:nowrap;color:var(--silk)}
+.v3-bar.orange .bv{color:var(--orange)} .v3-bar.red .bv{color:var(--red)}
+.changed + section .v3-bar .bv{background:var(--change-background-color);border-radius:2px}
+
+/* a service's own page: its name with a tag, then its two figures as Giagia meters (status.js puts them in boxes) */
+main.container .tag{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;border-radius:3px;padding:4px 8px}
+.v3-meters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0 24px}
+.v3-meter{position:relative;container-type:size;height:96px;background:rgba(255,255,255,.015);border:1px solid var(--line);border-radius:3px;padding:8px 12px}
+.v3-meter .k{font:500 10.5px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--silk-3)}
+.v3-meter .v{position:absolute;left:12px;bottom:8px;font:600 22px/1 var(--mono);color:var(--silk)}
+.v3-meter .wm{position:absolute;right:10px;bottom:4px;font:600 min(70cqh,24cqw)/1 var(--mono);letter-spacing:-.04em;color:var(--silk);opacity:.17;pointer-events:none}
+.v3-meter .wm small{font-size:.5em}
+dl.v3-done{display:none}
+
+/* incidents keep Upptime's words; only their face changes */
+html body article .r{font:500 11px var(--mono);letter-spacing:.08em;color:var(--silk-3)}
+
+/* the footer, as 3v3.dev's: small mono, gold links */
+html body footer{font:400 13px var(--mono);color:var(--silk-3);opacity:1;border-top:1px solid var(--line);margin-top:48px;padding-top:22px}
+html body footer a{color:var(--gold)}
+
+@media (max-width:560px){
+  main.container,nav .container{padding-left:16px;padding-right:16px}
+  nav .container{gap:12px}
+  nav .container a.logo div{display:none}
+  nav .container ul li a[href]{letter-spacing:.12em}
+  .v3-bar{grid-template-columns:76px 1fr 78px;gap:8px}
+  .v3-meters{grid-template-columns:minmax(0,1fr)}
+  main.container form.r label{margin-left:2px;padding:4px 6px}
+}
