@@ -1,0 +1,58 @@
+[
+  {
+    "name": "App",
+    "url": "https://app.3v3.dev/api/health",
+    "icon": "https://icons.duckduckgo.com/ip3/app.3v3.dev.ico",
+    "slug": "app",
+    "status": "up",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
+    "time": 632,
+    "timeDay": 632,
+    "timeWeek": 632,
+    "timeMonth": 632,
+    "timeYear": 632,
+    "dailyMinutesDown": {}
+  },
+  {
+    "name": "Website",
+    "url": "https://3v3.dev",
+    "icon": "https://icons.duckduckgo.com/ip3/3v3.dev.ico",
+    "slug": "website",
+    "status": "up",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
+    "time": 668,
+    "timeDay": 668,
+    "timeWeek": 668,
+    "timeMonth": 668,
+    "timeYear": 668,
+    "dailyMinutesDown": {}
+  },
+  {
+    "name": "MCP",
+    "url": "https://mcp.3v3.dev",
+    "icon": "https://icons.duckduckgo.com/ip3/mcp.3v3.dev.ico",
+    "slug": "mcp",
+    "status": "down",
+    "uptime": "73.35%",
+    "uptimeDay": "73.35%",
+    "uptimeWeek": "73.35%",
+    "uptimeMonth": "73.35%",
+    "uptimeYear": "73.35%",
+    "time": 484,
+    "timeDay": 484,
+    "timeWeek": 484,
+    "timeMonth": 484,
+    "timeYear": 484,
+    "dailyMinutesDown": {
+      "2026-10-13": 0
+    }
+  }
+]
